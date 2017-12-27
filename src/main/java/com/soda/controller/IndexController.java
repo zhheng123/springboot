@@ -28,6 +28,5 @@ public class IndexController {
 		rs.put("flag","1");
 		return rs;
 	}
-	
 
 }
