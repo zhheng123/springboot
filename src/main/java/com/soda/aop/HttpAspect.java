@@ -2,9 +2,12 @@ package com.soda.aop;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.ibatis.annotations.Result;
 import org.aspectj.lang.JoinPoint;
+import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.After;
 import org.aspectj.lang.annotation.AfterReturning;
+import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
@@ -20,7 +23,7 @@ public class HttpAspect {
     private final static Logger logger = LoggerFactory.getLogger(HttpAspect.class);
 
 
-    @Pointcut("execution(public * com.soda.test..*(..))")
+    @Pointcut("execution(public * com.soda.controller..*(..))")
     public void log() {
     }
 
@@ -48,10 +51,25 @@ public class HttpAspect {
     @After("log()")
     public void doAfter() {
         logger.info("222222222222");
+        logger.error("----error---------");
     }
+    @Around("log()")
+    public Object doAround(ProceedingJoinPoint proceedingJoinPoint) throws Throwable {
+        Result result = null;
+        try {
 
+        } catch (Exception e) {
+            return e.getMessage();
+        }
+        if(result == null){
+            return proceedingJoinPoint.proceed();
+        }else {
+            return result;
+        }
+    }
     @AfterReturning(returning = "object", pointcut = "log()")
     public void doAfterReturning(Object object) {
         logger.info("response={}", object.toString());
+        System.out.println("response={}"+object.toString());
     }
 }

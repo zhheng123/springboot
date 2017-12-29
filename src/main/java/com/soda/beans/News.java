@@ -2,9 +2,13 @@ package com.soda.beans;
 
 import java.util.Date;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+@ApiModel(description="新闻对象news")
 public class News {
+	@ApiModelProperty(value="用户名",name="id")
     private Integer id;
-
+	 @ApiModelProperty(value="标题",name="title",required=true)
     private String title;
 
     private String author;

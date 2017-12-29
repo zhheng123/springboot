@@ -38,10 +38,7 @@
     <result column="content" property="content" jdbcType="LONGVARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
-    id, title, author, coverurl, liveid, ispublish, publishdate, savetime, praisenum, 
-    stepnum, sharenum, istop, remarktime1, remark1, remark2, remarktime2, linkid, readNum, 
-    fakeReadNum, weiboid, source, wbcommentnum, timetask, organ, titleurl, newsType, 
-    hshareurl, hurl, livehead, udpateTime, updatetime
+    id, title, author
   </sql>
   <sql id="Blob_Column_List" >
     content

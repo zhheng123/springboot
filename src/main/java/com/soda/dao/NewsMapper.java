@@ -1,7 +1,6 @@
 package com.soda.dao;
 
 import com.soda.beans.News;
-
 public interface NewsMapper {
     int deleteByPrimaryKey(Integer id);
 

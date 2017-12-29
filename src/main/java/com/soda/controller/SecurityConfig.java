@@ -1,14 +1,11 @@
 package com.soda.controller;
 
-import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
-@Configuration  
 @EnableWebSecurity 
 public class SecurityConfig extends WebSecurityConfigurerAdapter{
 	 /**定义认证用户信息获取来源，密码校验规则等*/  
@@ -30,7 +27,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
     @Override  
     protected void configure(HttpSecurity http) throws Exception {  
         http.authorizeRequests()//配置安全策略  
-            .antMatchers("/hello").permitAll()//定义/请求不需要验证  
+            .antMatchers("/hello/*").permitAll()//定义/请求不需要验证  
             .anyRequest().authenticated()//其余的所有请求都需要验证  
             .and().formLogin().loginPage("/login/login").permitAll().defaultSuccessUrl("/", true)
             .and().logout()  
@@ -40,7 +37,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
     }  
     @Override
     public void configure(WebSecurity web) throws Exception {
-        web.ignoring().antMatchers("/js/**", "/css/**", "/images/**", "/**/favicon.ico");
+        web.ignoring().antMatchers("/js/**", "/css/**", "/images/**", "/**/favicon.ico", "/**/11111.jpg"
+        		,"/v2/api-docs", "/configuration/ui", "/swagger-resources", "/configuration/security", "/swagger-ui.html", "/webjars/**");
     }
    
 }
