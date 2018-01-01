@@ -2,17 +2,21 @@ package com.soda.beans;
 
 import java.util.Date;
 
+import javax.validation.constraints.NotNull;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 @ApiModel(description="新闻对象news")
 public class News {
-	@ApiModelProperty(value="用户名",name="id")
+	@NotNull
     private Integer id;
-	 @ApiModelProperty(value="标题",name="title",required=true)
+	@NotNull
     private String title;
 
     private String author;
 
+    @JsonIgnore
     private String coverurl;
 
     private String liveid;
